@@ -1,0 +1,33 @@
+//@version=3
+
+study(title="MA Ribbon", shorttitle="Ribbon", overlay=true)
+
+src = input(close, "Source")
+exp = input(true, "Exponential")
+show_100 = input(true, "MA 100")
+show_200 = input(true, "MA 200")
+
+ma_20 = exp ? ema(src, 20) : sma(src, 20)
+ma_25 = exp ? ema(src, 25) : sma(src, 25)
+ma_30 = exp ? ema(src, 30) : sma(src, 30)
+ma_35 = exp ? ema(src, 35) : sma(src, 35)
+ma_40 = exp ? ema(src, 40) : sma(src, 40)
+ma_45 = exp ? ema(src, 45) : sma(src, 45)
+ma_50 = exp ? ema(src, 50) : sma(src, 50)
+ma_55 = exp ? ema(src, 55) : sma(src, 55)
+ma_100 = exp ? ema(src, 100) : sma(src, 100)
+ma_200 = exp ? ema(src, 200) : sma(src, 200)
+
+plot(ma_20, "MA 20", #FFFF0080)
+plot(ma_25, "MA 25", #FFDF0080)
+plot(ma_30, "MA 30", #FFBF0080)
+plot(ma_35, "MA 35", #FF9F0080)
+plot(ma_40, "MA 40", #FF7F0080)
+plot(ma_45, "MA 45", #FF5F0080)
+plot(ma_50, "MA 50", #FF3F0080)
+plot(ma_55, "MA 55", #FF1F0080)
+
+p_100 = plot(show_100 ? ma_100 : na, "MA 100", #FF0000)
+p_200 = plot(show_200 ? ma_200 : na, "MA 200", #800000)
+
+fill(p_100, p_200, ma_100 > ma_200 ? green : red, 80, "MA Cloud")
