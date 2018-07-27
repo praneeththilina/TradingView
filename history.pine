@@ -1,0 +1,11 @@
+//@version=3
+
+study(title="Price Change History", shorttitle="History")
+
+src = input(close, title="Source")
+limit = input(5, title="Highlight If Above", type=float, minval=0, maxval=100000)
+diff = input(true, title="Percentage") ? change(src) / offset(src, 1) * 100 : change(src)
+
+paint(x) => abs(x) > limit ? orange : x > 0 ? green : red
+
+plot(diff, style=columns, color=paint(diff))
