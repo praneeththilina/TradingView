@@ -1,5 +1,7 @@
 //@version=3
 
+// https://github.com/chingc/TradingView
+
 study(title="MA Ribbon", shorttitle="Ribbon", overlay=true)
 
 src = input(close, title="Source")

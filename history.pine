@@ -1,5 +1,7 @@
 //@version=3
 
+// https://github.com/chingc/TradingView
+
 study(title="Price Change History", shorttitle="History")
 
 src = input(close, title="Source")
