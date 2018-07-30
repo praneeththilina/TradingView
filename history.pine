@@ -4,9 +4,10 @@ study(title="Price Change History", shorttitle="History")
 
 src = input(close, title="Source")
 since = input(1, title="Since", minval=1)
-limit = input(5, title="Highlight If Above", type=float, minval=0)
+above = input(5, title="Highlight Above", type=float, minval=0)
+below = input(-5, title="Highlight Below", type=float, maxval=0)
 diff = input(true, title="Percentage") ? change(src, since) / offset(src, since) * 100 : change(src, since)
 
-paint(x) => abs(x) > limit ? orange : x > 0 ? green : red
+paint(x) => x > above ? aqua : x < below ? fuchsia : x > 0 ? green : red
 
 plot(diff, style=columns, color=paint(diff))
