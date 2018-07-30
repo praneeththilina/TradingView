@@ -2,7 +2,7 @@
 
 // https://github.com/chingc/TradingView
 
-study(title="Price Change History", shorttitle="History")
+study(title="Price Change History", shorttitle="Price Change")
 
 src = input(close, title="Source")
 since = input(1, title="Since", minval=1)

@@ -2,7 +2,7 @@
 
 // https://github.com/chingc/TradingView
 
-study(title="MA Ribbon", shorttitle="Ribbon", overlay=true)
+study(title="Moving Average Ribbon", shorttitle="Ribbon", overlay=true)
 
 src = input(close, title="Source")
 exp = input(true, title="Exponential")
