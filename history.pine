@@ -8,8 +8,17 @@ src = input(close, title="Source")
 since = input(1, title="Since", minval=1)
 above = input(5, title="Highlight Above", type=float, minval=0)
 below = input(-5, title="Highlight Below", type=float, maxval=0)
-diff = input(true, title="Percentage") ? change(src, since) / offset(src, since) * 100 : change(src, since)
+diff = input(true, title="As Percentage") ? change(src, since) / offset(src, since) * 100 : change(src, since)
+bars = input(50, title="Track Highlighted", minval=1)
 
 paint(x) => x > above ? aqua : x < below ? fuchsia : x > 0 ? green : red
 
+highlighted(x, y) =>
+    highlighted = 0
+    for i = 0 to y - 1
+        if x[i] > above or x[i] < below
+            highlighted := highlighted + 1
+    highlighted / y
+
 plot(diff, style=columns, color=paint(diff))
+plot(highlighted(diff, bars), color=orange, transp=100)
