@@ -5,11 +5,11 @@
 study(title="Price Change History", shorttitle="Price Change")
 
 src = input(close, title="Source")
-since = input(1, title="Since", minval=1)
-above = input(5, title="Highlight Above", type=float, minval=0)
-below = input(-5, title="Highlight Below", type=float, maxval=0)
-diff = input(true, title="As Percentage") ? change(src, since) / offset(src, since) * 100 : change(src, since)
-bars = input(50, title="Track Highlighted", minval=1)
+since = input(1, title="Look Back", minval=1)  // the number of trading sessions to consider
+above = input(5, title="Highlight Above", type=float, minval=0)  // use a different color for values above this
+below = input(-5, title="Highlight Below", type=float, maxval=0)  // use a different color for values below this
+diff = input(true, title="As Percentage") ? change(src, since) / offset(src, since) * 100 : change(src, since)  // show percentage change or dollar change
+bars = input(50, title="% Highlighted Within", minval=1)  // the number of trading sessions considered to calculate how many of them are highlighted
 
 paint(x) => x > above ? aqua : x < below ? fuchsia : x > 0 ? green : red
 
