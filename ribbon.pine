@@ -18,7 +18,6 @@ plot(ma(35), title="MA 35", color=#FF9F0080)
 plot(ma(40), title="MA 40", color=#FF7F0080)
 plot(ma(45), title="MA 45", color=#FF5F0080)
 plot(ma(50), title="MA 50", color=#FF3F0080)
-plot(ma(55), title="MA 55", color=#FF1F0080)
 
 ma_100 = ma(100)
 ma_200 = ma(200)
