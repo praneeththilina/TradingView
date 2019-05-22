@@ -2,7 +2,7 @@
 
 // https://github.com/chingc/TradingView
 
-study(title="Price Change History", shorttitle="Price Change")
+study(title="Price Change History", shorttitle="Price Change", precision=2)
 
 src = input(close, title="Source")
 since = input(1, title="Look Back", minval=1)  // the number of trading sessions to consider
