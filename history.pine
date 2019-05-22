@@ -5,12 +5,11 @@
 study(title="Price Change History", shorttitle="Price Change", precision=2)
 
 src = input(close, title="Source")
-
 since = input(1, title="Look Back", minval=1)  // calculate change from this many trading sessions ago
 above = input(5, title="Highlight Above", type=float, minval=0)  // highlight values above this
 below = input(-5, title="Highlight Below", type=float, maxval=0)  // highlight values below this
 diff = input(true, title="As Percentage") ? change(src, since) / offset(src, since) * 100 : change(src, since)  // show change as a percent or decimal
-bars = input(50, title="% Highlighted Within", minval=1)  // the number of previous trading sessions to consider when calculating how many are highlighted
+consider = input(50, title="% Highlighted Within", minval=1)  // the number of previous trading sessions to consider when calculating how many are highlighted
 
 // aqua and fuchsia are highlights; green and red are normal
 paint(x) => x > above ? aqua : x < below ? fuchsia : x > 0 ? green : red
@@ -18,11 +17,11 @@ paint(x) => x > above ? aqua : x < below ? fuchsia : x > 0 ? green : red
 // take a series of changes (x), the number of previous trading sessions to consider (y),
 // calculate how many of those sessions are highlighted, and return it as a percentage
 highlighted(x, y) =>
-    highlighted = 0
+    count = 0
     for i = 0 to y - 1
         if x[i] > above or x[i] < below
-            highlighted := highlighted + 1
-    highlighted / y
+            count := count + 1
+    count / y
 
 // plot the change
 plot(diff, style=columns, color=paint(diff))
@@ -30,4 +29,4 @@ plot(diff, style=columns, color=paint(diff))
 // plot the percent hightlighted
 // this will show up as the orange number with a value between 0 and 1
 // the graph itself isn't helpful and is hidden by setting transp to 100
-plot(highlighted(diff, bars), color=orange, transp=100)
+plot(highlighted(diff, consider), color=orange, transp=100)
