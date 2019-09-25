@@ -1,4 +1,4 @@
-//@version=3
+//@version=4
 
 // https://github.com/chingc/TradingView
 
@@ -23,4 +23,4 @@ ma_100 = ma(100)
 ma_200 = ma(200)
 p_100 = plot(show_100 ? ma_100 : na, title="MA 100", color=#FF0000)
 p_200 = plot(show_200 ? ma_200 : na, title="MA 200", color=#800000)
-fill(p_100, p_200, color=(ma_100 > ma_200 ? green : red), transp=80, title="MA Fill")
+fill(p_100, p_200, color=(ma_100 > ma_200 ? color.green : color.red), transp=80, title="MA Fill")
